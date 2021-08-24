@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name: fetch
+# key: fetchpost
+# --
+fetch('${1:url}', {
+    method: {2:"POST"},
+    headers: {
+      '${3:Content-type}': 'application/${4:json}'
+    },
+    body: $5
+}).then(${6:()} => {
+  $7
+}).catch(${8:()} => {
+  $9
+}).finally(${10:()} => {
+  $11
+});

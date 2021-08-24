@@ -1,0 +1,39 @@
+set number
+set laststatus=2
+set showcmd
+set noshowmode
+syntax on
+set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
+set mouse=a
+map <C-c> "+y
+autocmd BufEnter *.txt :set linebreak
+autocmd BufEnter *.txt :nnoremap j gj
+autocmd BufEnter *.txt :nnoremap k gk
+autocmd TextChanged,TextChangedI <buffer> silent write
+
+call plug#begin()
+Plug 'tpope/vim-commentary'
+Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-endwise'
+Plug 'itchyny/lightline.vim'
+Plug 'voldikss/vim-floaterm'
+Plug 'preservim/nerdtree'
+Plug 'rafi/awesome-vim-colorschemes'
+Plug 'dracula/vim'
+call plug#end()
+set termguicolors
+ let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+ 
+ let g:lightline = {
+       \ 'colorscheme': 'dracula',
+       \ }
+ 
+ 
+ " NerdTree config
+ map <F2> :NERDTreeToggle<CR>
+ 
+ let g:floaterm_keymap_toggle = '<F12>'
+ let g:floaterm_keymap_kill = '<F3>'
+ colorscheme dracula
+
