@@ -52,11 +52,17 @@
 ;;set modes for different file extensions
 (add-to-list 'auto-mode-alist '("\\.html\\'" . html-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx\\'" . rjsx-mode))
 
 ;; js2-mode autocomplition
 (after! js2-mode
   (set-company-backend! 'js2-mode
     '(company-dabbrev :with ac-js2-company company-capf company-tide company-yasnippet)))
+
+;; rjsx-mode autocomplition
+(after! rjsx-mode
+  (set-company-backend! 'rjsx-mode
+    '(company-dabbrev :with company-capf company-tide company-yasnippet)))
 
 ;; shortcuts
 (setq centaur-tabs-enable-key-bindings t)
@@ -68,16 +74,22 @@
 (define-key evil-normal-state-map (kbd "SPC 1") 'treemacs)
 
 (setq mode-require-final-newline t)
+(setq solidity-solium-path "/home/vova/.nvm/versions/node/v16.11.1/bin/solium")
+(setq solidity-sols-path "/home/vova/.nvm/versions/node/v16.11.1/bin/solcjs")
+(setq flycheck-solidity-solium-soliumrcfile "/home/vova/Documents/blockchain_tutorial/.soliumrc.json")
+(setq solidity-flycheck-solc-checker-active t)
+(setq solidity-flycheck-solium-checker-active t)
 
-(add-hook 'ruby-mode-hook
-  (lambda ()
-    (setq-local flycheck-command-wrapper-function
-                (lambda (command) (append '("bundle" "exec") command)))))
+(setq flycheck-solidity-solc-addstd-contracts t)
+(setq-default tab-width 2)
+(setq-hook! 'solidity-mode-hook tab-width 4)
+(setq-hook! 'ruby-mode-hook +format-with 'rubocop)
+(setq flycheck-ruby-rubocop-executable "~/.rbenv/shims/rubocop")
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 (if (display-graphic-p)
-    (setq doom-theme 'doom-dracula)
+    (setq doom-theme 'doom-nord)
   ;; (setq doom-theme 'doom-one-light))
   (setq doom-theme 'doom-dracula))
 ;; (setq doom-themes-treemacs-theme "doom-atom")
