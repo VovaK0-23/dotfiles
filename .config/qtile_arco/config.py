@@ -34,7 +34,7 @@ from libqtile import layout, bar, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen, Rule
 from libqtile.command import lazy
 from libqtile.widget import Spacer
-import arcobattery
+# import arcobattery
 
 # mod4 or mod = super key
 mod = "mod4"
@@ -234,6 +234,7 @@ layouts = [
         border_on_single = True ),
     layout.Max(),
     layout.TreeTab(),
+    layout.MonadTall(margin=8, border_width=2, border_focus="#5e81ac", border_normal="#4c566a"),
 ]
 
 # COLORS FOR THE BAR
