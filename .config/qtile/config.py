@@ -106,6 +106,7 @@ keys = [
     Key([mod], 'p', lazy.spawn('pamac-manager')),
     Key([mod], 'e', lazy.spawn('emacs')),
     Key([mod], 'o', lazy.spawn("bash /home/vova/Documents/scripts/obs.sh")),
+    Key([mod], 'v', lazy.spawn("bash /home/vova/Documents/scripts/vlc.sh")),
     Key(
         [], "XF86AudioRaiseVolume",
         lazy.spawn("amixer -c 0 -q set Master 2dB+")
@@ -118,7 +119,7 @@ keys = [
         [], "XF86AudioMute",
         lazy.spawn("amixer -c 0 -q set Master toggle")
     ),
-    Key(["shift"], "space", lazy.widget["keyboardlayout"].next_keyboard(), desc="Next keyboard layout."),
+    Key([mod, "shift"], "space", lazy.widget["keyboardlayout"].next_keyboard(), desc="Next keyboard layout."),
 ]
 
 groups = [Group(i) for i in "123456789"]
@@ -176,158 +177,156 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 
-screens = [
-    Screen(
-        top=bar.Bar(
-            [
-                widget.CurrentLayout(
-                    foreground = "#ffffff",
-                    background = colors[7],
-                    ),
-                widget.TextBox(
-                    foreground = "#ffffff",
-                    background = colors[4],
-                    text="",
-                    font="Ubuntu Bold",
-                    fontsize = 9,
-                    margin_y = 3,
-                    margin_x = 7,
-                    padding_y = 5,
-                    padding_x = 7,
-                    mouse_callbacks = {}
-                ),
-                widget.GroupBox(
-                       fontsize = 9,
-                       font = "Ubuntu Bold",
-                       margin_y = 3,
-                       margin_x = 0,
-                       padding_y = 5,
-                       padding_x = 7,
-                       borderwidth = 0,
-                       active = colors[2],
-                       block_highlight_text_color = "#ffffff",
-                       inactive = colors[7],
-                       rounded = True,
-                       highlight_color = colors[1],
-                       highlight_method = "line",
-
-                       this_current_screen_border = colors[2],
-                       this_screen_border = colors[6],
-                       other_current_screen_border = colors[2],
-                       other_screen_border = colors[6],
-
-                       foreground = colors[2],
-                       background = colors[0],
-                       disable_drag = True,
-
-                       urgent_alert_method = 'line',
-                       urgent_border = colors[2],
-                       urgent_text = colors[3]
-                ),
-                widget.Prompt(),
-                widget.Sep(
-                    linewidth = 0,
-                    padding = 7,
-                    foreground = colors[1],
-                    background = colors[0]
-                ),
-                widget.WindowName(
-                       foreground = colors[6],
-                       background = colors[0],
-                       padding = 0
-                ),
-                widget.Clock(
-                    format = '%Y-%m-%d %H:%M',
-                    background = colors[0],
-                    foreground = colors[2],
-                    center_alligned = True
-                ),
-                widget.Sep(
-                    linewidth = 0,
-                    padding = 10,
-                    foreground = colors[2],
-                    background = colors[0]
-                ),
-                widget.Volume(
-                    fmt=" {}",
-                    emoji=True,
-                    foreground = colors[2],
-                    background = colors[0],
-
-                ),
-                widget.Volume(
-                       foreground = colors[2],
-                       background = colors[0],
-                ),
-                widget.Sep(
-                    linewidth = 0,
-                    padding = 10,
-                    foreground = colors[2],
-                    background = colors[0]
-                ),
-                widget.CheckUpdates(
-                       update_interval = 1800,
-                       distro = "Arch_checkupdates",
-                       display_format = "{updates} Updates",
-                       no_update_string = "Up to date",
-                       colour_no_updates = colors[2],
-                       colour_have_updates = colors[3],
-                       foreground = colors[2],
-                       execute = terminal + 'pamac checkupdates',
-                       background = colors[0]
-                ),
-                widget.Sep(
-                    linewidth = 0,
-                    padding = 10,
-                    foreground = colors[2],
-                    background = colors[0]
-                ),
-                #widget.BatteryIcon(
-                #    background = colors[0],
-                #    update_interval = 25,
-                #    #theme_path= home+".config/qtile/icons/battery/",
-                #),
-                # widget.Wlan(
-                #    interface = "wlp2s0",
-                #    format = '{essid}',
-                #    foreground = colors[2],
-                #    background = colors[0],
-                # ),
-                #widget.Sep(
-                #    linewidth = 0,
-                #    padding = 10,
-                #    foreground = colors[2],
-                #    background = colors[0]
-                #),
-                widget.KeyboardLayout(
-                    background = colors[0],
-                    foreground = colors[2],
-                    configured_keyboards = ['us', 'ru']
-                ),
-                widget.Sep(
-                    linewidth = 0,
-                    padding = 10,
-                    foreground = colors[2],
-                    background = colors[0],
-                ),
-                widget.Systray(
-                    background = colors[0],
-                    padding = 5
-                ),
-                widget.Sep(
-                    linewidth = 0,
-                    padding = 10,
-                    foreground = colors[2],
-                    background = colors[0],
-                ),
-                widget.QuickExit(
-                    background = colors[0],
-                    padding = 5
-                ),
-            ],
-            24,
+widgets_list = [
+    widget.CurrentLayout(
+            foreground = "#ffffff",
+            background = colors[7],
+            ),
+        widget.TextBox(
+            foreground = "#ffffff",
+            background = colors[4],
+            text="",
+            font="Ubuntu Bold",
+            fontsize = 9,
+            margin_y = 3,
+            margin_x = 7,
+            padding_y = 5,
+            padding_x = 7,
+            mouse_callbacks = {}
         ),
-    ),
+        widget.GroupBox(
+                fontsize = 9,
+                font = "Ubuntu Bold",
+                margin_y = 3,
+                margin_x = 0,
+                padding_y = 5,
+                padding_x = 7,
+                borderwidth = 0,
+                active = colors[2],
+                block_highlight_text_color = "#ffffff",
+                inactive = colors[7],
+                rounded = True,
+                highlight_color = colors[1],
+                highlight_method = "line",
+
+                this_current_screen_border = colors[2],
+                this_screen_border = colors[6],
+                other_current_screen_border = colors[2],
+                other_screen_border = colors[6],
+
+                foreground = colors[2],
+                background = colors[0],
+                disable_drag = True,
+
+                urgent_alert_method = 'line',
+                urgent_border = colors[2],
+                urgent_text = colors[3]
+        ),
+        widget.Prompt(),
+        widget.Sep(
+            linewidth = 0,
+            padding = 7,
+            foreground = colors[1],
+            background = colors[0]
+        ),
+        widget.WindowName(
+                foreground = colors[6],
+                background = colors[0],
+                padding = 0
+        ),
+        widget.Clock(
+            format = '%Y-%m-%d %H:%M',
+            background = colors[0],
+            foreground = colors[2],
+            center_alligned = True
+        ),
+        widget.Sep(
+            linewidth = 0,
+            padding = 10,
+            foreground = colors[2],
+            background = colors[0]
+        ),
+        widget.Volume(
+            fmt=" {}",
+            emoji=True,
+            foreground = colors[2],
+            background = colors[0],
+
+        ),
+        widget.Volume(
+                foreground = colors[2],
+                background = colors[0],
+        ),
+        widget.Sep(
+            linewidth = 0,
+            padding = 10,
+            foreground = colors[2],
+            background = colors[0]
+        ),
+        widget.CheckUpdates(
+                update_interval = 1800,
+                distro = "Arch_checkupdates",
+                display_format = "{updates} Updates",
+                no_update_string = "Up to date",
+                colour_no_updates = colors[2],
+                colour_have_updates = colors[3],
+                foreground = colors[2],
+                execute = terminal + 'pamac checkupdates',
+                background = colors[0]
+        ),
+        widget.Sep(
+            linewidth = 0,
+            padding = 10,
+            foreground = colors[2],
+            background = colors[0]
+        ),
+        #widget.BatteryIcon(
+        #    background = colors[0],
+        #    update_interval = 25,
+        #    #theme_path= home+".config/qtile/icons/battery/",
+        #),
+        # widget.Wlan(
+        #    interface = "wlp2s0",
+        #    format = '{essid}',
+        #    foreground = colors[2],
+        #    background = colors[0],
+        # ),
+        #widget.Sep(
+        #    linewidth = 0,
+        #    padding = 10,
+        #    foreground = colors[2],
+        #    background = colors[0]
+        #),
+        widget.KeyboardLayout(
+            background = colors[0],
+            foreground = colors[2],
+            configured_keyboards = ['us', 'ru']
+        ),
+        widget.Sep(
+            linewidth = 0,
+            padding = 10,
+            foreground = colors[2],
+            background = colors[0],
+        ),
+        widget.Systray(
+            background = colors[0],
+            padding = 5
+        ),
+        widget.Sep(
+            linewidth = 0,
+            padding = 10,
+            foreground = colors[2],
+            background = colors[0],
+        ),
+        widget.QuickExit(
+            background = colors[0],
+            padding = 5
+        ),
+    ]
+
+screens = [
+    Screen(top=bar.Bar(widgets_list, size=24)),
+    Screen(top=bar.Bar(widgets_list, size=24)),
 ]
 
 # Drag floating layouts.

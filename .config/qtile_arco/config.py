@@ -225,13 +225,15 @@ layout_theme = init_layout_theme()
 
 
 layouts = [
-    layout.MonadTall(
-        margin=8, border_width=2, border_focus="#5e81ac", border_normal="#4c566a"
-    ),
-    layout.MonadWide(
-        margin=8, border_width=2, border_focus="#5e81ac", border_normal="#4c566a"
-    ),
-    layout.Floating(**layout_theme),
+    layout.Columns(
+        border_focus_stack='#5e81ac',
+        border_width = 2,
+        border_focus = colors[1][0],
+        border_normal = colors[2][0],
+        margin = 5,
+        border_on_single = True ),
+    layout.Max(),
+    layout.TreeTab(),
 ]
 
 # COLORS FOR THE BAR
@@ -339,15 +341,15 @@ def init_widgets_list():
         #          threshold = 80
         #          ),
         # # battery option 1  ArcoLinux Horizontal icons do not forget to import arcobattery at the top
-        widget.Sep(linewidth=1, padding=10, foreground=colors[2], background=colors[1]),
-        arcobattery.BatteryIcon(
-            padding=0,
-            scale=0.7,
-            y_poss=2,
-            theme_path=home + "/.config/qtile/icons/battery_icons_horiz",
-            update_interval=5,
-            background=colors[1],
-        ),
+        # widget.Sep(linewidth=1, padding=10, foreground=colors[2], background=colors[1]),
+        # arcobattery.BatteryIcon(
+        #     padding=0,
+        #     scale=0.7,
+        #     y_poss=2,
+        #     theme_path=home + "/.config/qtile/icons/battery_icons_horiz",
+        #     update_interval=5,
+        #     background=colors[1],
+        # ),
         widget.Sep(linewidth=1, padding=10, foreground=colors[2], background=colors[1]),
         widget.KeyboardLayout(
             background=colors[0],
