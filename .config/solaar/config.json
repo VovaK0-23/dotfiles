@@ -1,0 +1,36 @@
+{
+  "407B:ACC98F90": {
+    "_dpi-sliding": 0,
+    "_modelId": "B020407BC08A",
+    "_name": "MX Vertical Wireless Mouse",
+    "_sensitive": {
+      "divert-keys": false,
+      "dpi": true,
+      "dpi-sliding": false,
+      "lowres-smooth-scroll": false,
+      "mouse-gestures": false,
+      "reprogrammable-keys": false
+    },
+    "_serial": "ACC98F90",
+    "_unitId": "2A6C5BAC",
+    "divert-keys": {
+      "253": 0,
+      "82": 0,
+      "83": 0,
+      "86": 0
+    },
+    "dpi": "1500",
+    "dpi-sliding": "0",
+    "lowres-smooth-scroll": false,
+    "mouse-gestures": "0",
+    "reprogrammable-keys": {
+      "253": 253,
+      "80": 80,
+      "81": 81,
+      "82": 82,
+      "83": 83,
+      "86": 86
+    }
+  },
+  "_version": "1.1.0"
+}

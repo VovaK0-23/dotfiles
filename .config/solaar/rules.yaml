@@ -1,0 +1,6 @@
+%YAML 1.3
+---
+- Modifiers: []
+- KeyPress: space
+- Test: crown_right
+...

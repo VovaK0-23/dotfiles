@@ -1,0 +1,18 @@
+{
+  "indent": 2,
+  "undef": true,
+  "quotmark": false,
+  "maxlen": 120,
+  "trailing": true,
+  "curly": false,
+  "strict": false,
+  "browser": true,
+  "devel": true,
+  "jquery": true,
+  "esversion": 11,
+  "node": true,
+  "globals": {
+    "google": false,
+    "URLSearchParams": false
+  }
+}

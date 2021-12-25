@@ -81,6 +81,8 @@ alias lal="lsd -Ah --blocks permission --blocks size --blocks date --blocks name
 alias reload="source ~/.zshrc"
 alias off="shutdown now"
 alias tmax="emacs -nw"
+alias notes="cd Documents/notes"
+alias wifi-settings="nmtui"
 
 # Theming section  
 autoload -U compinit colors zcalc
@@ -239,3 +241,7 @@ load-nvmrc() {
 }
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
+neofetch
+# paleofetch
+# fish
+# macchina -H Machine LocalIp

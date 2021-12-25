@@ -3,7 +3,7 @@
 # key: fetchpost
 # --
 fetch('${1:url}', {
-    method: {2:"POST"},
+    method: ${2:"POST"},
     headers: {
       '${3:Content-type}': 'application/${4:json}'
     },

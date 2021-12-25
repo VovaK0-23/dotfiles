@@ -3,6 +3,7 @@
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
+;; (setq load-prefer-newer t)
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
@@ -21,7 +22,8 @@
 ;; font string. You generally only need these two:
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
-(setq doom-font (font-spec :family "SauceCodePro Nerd Font Mono" :size 15)
+;; (setq doom-font (font-spec :family "JetBrainsMono Nerd Font Mono" :size 16)
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font Mono" :size 16)
       doom-variable-pitch-font (font-spec :family "Open Sans" :size 13))
 (after! doom-themes
   (setq  doom-themes-enable-bold t
@@ -59,10 +61,9 @@
   (set-company-backend! 'js2-mode
     '(company-dabbrev :with ac-js2-company company-capf company-tide company-yasnippet)))
 
-;; rjsx-mode autocomplition
 (after! rjsx-mode
   (set-company-backend! 'rjsx-mode
-    '(company-dabbrev :with company-capf company-tide company-yasnippet)))
+    '(company-yasnippet)))
 
 ;; shortcuts
 (setq centaur-tabs-enable-key-bindings t)
@@ -71,9 +72,12 @@
 (define-key evil-normal-state-map (kbd "SPC <down>") 'centaur-tabs-forward-group)
 (define-key evil-normal-state-map (kbd "SPC <up>") 'centaur-tabs-backward-group)
 (define-key evil-normal-state-map (kbd "SPC DEL") 'centaur-tabs--kill-this-buffer-dont-ask)
+(define-key evil-normal-state-map (kbd "SPC l") 'centaur-tabs-move-current-tab-to-right)
+(define-key evil-normal-state-map (kbd "SPC k") 'centaur-tabs-move-current-tab-to-left)
 (define-key evil-normal-state-map (kbd "SPC 1") 'treemacs)
 
 (setq mode-require-final-newline t)
+
 (setq solidity-solium-path "/home/vova/.nvm/versions/node/v16.11.1/bin/solium")
 (setq solidity-sols-path "/home/vova/.nvm/versions/node/v16.11.1/bin/solcjs")
 (setq flycheck-solidity-solium-soliumrcfile "/home/vova/Documents/blockchain_tutorial/.soliumrc.json")
@@ -81,17 +85,21 @@
 (setq solidity-flycheck-solium-checker-active t)
 
 (setq flycheck-solidity-solc-addstd-contracts t)
-(setq-default tab-width 2)
+
+(setq-default tab-width 1)
 (setq-hook! 'solidity-mode-hook tab-width 4)
-(setq-hook! 'ruby-mode-hook +format-with 'rubocop)
+
+;; (setq-hook! 'ruby-mode-hook +format-with 'rubocop)
 (setq flycheck-ruby-rubocop-executable "~/.rbenv/shims/rubocop")
+;; (setq rubocop-format-on-save t)
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
+(setq doom-theme 'doom-nord)
 (if (display-graphic-p)
     (setq doom-theme 'doom-nord)
-  ;; (setq doom-theme 'doom-one-light))
-  (setq doom-theme 'doom-dracula))
+  ;; (setq doom-theme 'doom-dracula)
+  )
 ;; (setq doom-themes-treemacs-theme "doom-atom")
 (setq doom-themes-treemacs-theme "doom-colors")
 
@@ -103,6 +111,12 @@
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type 'relative)
 
+(use-package reverse-im
+  :ensure t
+  :custom
+  (reverse-im-input-methods '("russian-computer"))
+  :config
+  (reverse-im-mode t))
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
@@ -135,7 +149,6 @@ If the file is emacs lisp, run the byte compiled version if exist."
     ;; a keyed list of file suffix to comand-line program path/name
     (setq suffixMap
           '(("php" . "php")
-            ;; ("coffee" . "coffee -p")
             ("pl" . "perl")
             ("py" . "python")
             ("rb" . "ruby")

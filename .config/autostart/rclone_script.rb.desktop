@@ -1,0 +1,7 @@
+[Desktop Entry]
+Exec=/home/vova/Documents/code_tests/rclone_script/rclone_script.rb
+Icon=dialog-scripts
+Name=rclone_script.rb
+Path=
+Type=Application
+X-KDE-AutostartScript=true
