@@ -40,7 +40,7 @@ WORDCHARS=${WORDCHARS//\/[&.;]}                                 # Don't consider
 
 ## Keybindings section
 # Enable vi mode
-bindkey -v
+bindkey -e
 # bindkey -e
 bindkey '^[[7~' beginning-of-line                               # Home key
 bindkey '^[[H' beginning-of-line                                # Home key
