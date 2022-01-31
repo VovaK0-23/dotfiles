@@ -1,21 +1,21 @@
 #!/bin/sh
 
 xrandr \
-	--output DP-0 --off \
-	--output DP-1 --off \
-	--output DP-2 --off \
-	--output DP-3 --off \
-	--output HDMI-0 --primary --mode 1920x1080 --pos 1920x0 --rotate normal \
-       	--output DP-4 --mode 1920x1080 --pos 0x0 --rotate normal --rate 75\
-	--output DP-5 --off
+  --output DP-0 --off \
+  --output DP-1 --off \
+  --output DP-2 --off \
+  --output DP-3 --off \
+  --output HDMI-0 --primary --mode 1920x1080 --pos 1930x0 --rotate normal \
+  --output DP-4 --mode 1920x1080 --pos 0x0 --rotate normal --rate 75\
+  --output DP-5 --off
 
+setxkbmap -layout us,ru  -option 'grp:alt_shift_toggle'
 nitrogen --restore &
 picom &
-kdeconnect-app &
+kstart5 /usr/lib/kdeconnectd &
 xfce4-power-manager &
-ruby Documents/code_tests/rclone_script/rclone_script.rb &
-bash Documents/scripts/auth.sh &
 redshift-gtk &
 solaar -w hide -b symbolic &
 emacs --daemon &
+~/.config/qtile/scripts/keyboard_layout.sh &
 sudo timeshift --check

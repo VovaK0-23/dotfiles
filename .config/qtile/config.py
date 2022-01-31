@@ -30,7 +30,7 @@ import re
 import socket
 import subprocess
 from typing import List  # noqa: F401
-from libqtile import layout, bar, widget, hook
+from libqtile import layout, bar, widget, hook, qtile
 from libqtile.config import Click, Drag, Group, Key, Match, Screen, Rule
 from libqtile.command import lazy
 from libqtile.widget import Spacer
@@ -75,12 +75,12 @@ keys = [
     Key([mod, "shift"], "f", lazy.window.toggle_fullscreen()),
     Key([mod, "shift"], "q", lazy.shutdown()),
     Key([mod, "shift"], "r", lazy.restart()),
-    Key(
-        [mod, "shift"],
-        "space",
-        lazy.widget["keyboardlayout"].next_keyboard(),
-        desc="Next keyboard layout.",
-    ),
+    # Key(
+    #     [mod, "shift"],
+    #     "space",
+    #     lazy.widget["keyboardlayout"].next_keyboard(),
+    #     desc="Next keyboard layout.",
+    # ),
     # QTILE LAYOUT KEYS
     Key([mod, "shift"], "n", lazy.layout.normalize()),
     Key([mod], "space", lazy.next_layout()),
@@ -150,7 +150,7 @@ keys = [
     ),
     Key(
         [], "XF86AudioMute",
-        lazy.spawn("amixer -c 0 -q set Master toggle")
+        lazy.spawn("amixer -q set Master toggle")
     ),
     Key(["shift"], "Print", lazy.spawn('spectacle')),
 ]
@@ -190,11 +190,11 @@ group_labels = [
 # group_labels = ["Web", "Edit/chat", "Image", "Gimp", "Meld", "Video", "Vb", "Files", "Mail", "Music",]
 
 group_layouts = [
-    "columns",
-    "columns",
-    "columns",
-    "columns",
-    "columns",
+    "monadtall",
+    "monadtall",
+    "monadtall",
+    "monadtall",
+    "monadtall",
     "columns",
     "columns",
     "columns",
@@ -268,10 +268,10 @@ layouts = [
         border_focus = '#5e81ac',
         border_normal = colors[2][0],
         margin = 5,
-        border_on_single = True ),
+        border_on_single = False ),
     layout.Max(),
     layout.TreeTab(),
-    layout.MonadTall(margin=8, border_width=2, border_focus="#5e81ac", border_normal="#4c566a"),
+    layout.MonadTall(margin=7, border_width=3, border_focus="#5e81ac", border_normal="#4c566a", single_border_width = 0),
 ]
 
 
@@ -369,12 +369,12 @@ def init_widgets_list():
         #     update_interval=5,
         #     background=colors[1],
         # ),
-        widget.Sep(linewidth=1, padding=10, foreground=colors[2], background=colors[1]),
-        widget.KeyboardLayout(
-            background=colors[0],
-            foreground=colors[2],
-            configured_keyboards=["us", "ru"],
-        ),
+        # widget.Sep(linewidth=1, padding=10, foreground=colors[2], background=colors[1]),
+        # widget.KeyboardLayout(
+        #     background=colors[0],
+        #     foreground=colors[2],
+        #     configured_keyboards=["us", "ru"],
+        # ),
         # # battery option 2  from Qtile
         # widget.Sep(
         #          linewidth = 1,
@@ -413,14 +413,15 @@ def init_widgets_list():
         #          foreground = colors[2],
         #          background = colors[1]
         #          ),
-        # widget.TextBox(
-        #          font="FontAwesome",
-        #          text="  ",
-        #          foreground=colors[4],
-        #          background=colors[1],
-        #          padding = 0,
-        #          fontsize=16
-        #          ),
+        widget.TextBox(
+                 name="layout",
+                 font="FontAwesome",
+                 text="",
+                 foreground=colors[2],
+                 background=colors[1],
+                 padding = 0,
+                 fontsize=16
+                 ),
         # widget.Memory(
         #          font="Noto Sans",
         #          format = '{MemUsed}M/{MemTotal}M',
@@ -429,12 +430,12 @@ def init_widgets_list():
         #          foreground = colors[5],
         #          background = colors[1],
         #         ),
-        # widget.Sep(
-        #          linewidth = 1,
-        #          padding = 10,
-        #          foreground = colors[2],
-        #          background = colors[1]
-        #          ),
+        widget.Sep(
+                 linewidth = 1,
+                 padding = 10,
+                 foreground = colors[2],
+                 background = colors[1]
+                 ),
         widget.TextBox(
             font="FontAwesome",
             text="  ",
@@ -449,12 +450,12 @@ def init_widgets_list():
             fontsize=12,
             format="%Y-%m-%d %H:%M",
         ),
-        # widget.Sep(
-        #          linewidth = 1,
-        #          padding = 10,
-        #          foreground = colors[2],
-        #          background = colors[1]
-        #          ),
+        widget.Sep(
+                 linewidth = 1,
+                 padding = 10,
+                 foreground = colors[2],
+                 background = colors[1]
+                 ),
         widget.Systray(background=colors[1], icon_size=20, padding=4),
     ]
     return widgets_list
@@ -479,8 +480,8 @@ widgets_screen2 = init_widgets_screen2()
 
 def init_screens():
     return [
-        Screen(top=bar.Bar(widgets=init_widgets_screen1(), size=26, opacity=0.8)),
-        Screen(top=bar.Bar(widgets=init_widgets_screen2(), size=26, opacity=0.8)),
+        Screen(top=bar.Bar(widgets=init_widgets_screen1(), size=26, opacity=0.8, margin=[3,8,0,5])),
+        Screen(top=bar.Bar(widgets=init_widgets_screen2(), size=26, opacity=0.8, margin=[3,5,0,5])),
     ]
 
 
