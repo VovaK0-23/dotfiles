@@ -1,3 +1,5 @@
+# Oh my config
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -45,18 +47,25 @@ zstyle ':omz:update' frequency 7
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+# NOTE to install custom plugins:
+#   git clone https://github.com/zsh-users/zsh-autosuggestions \
+#     ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+#   git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git \
+#     ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
 plugins=(
-	git 
+	fast-syntax-highlighting
+	git
 	nvm
-	fast-syntax-highlighting 
-	zsh-autosuggestions 
-	z
 	sudo
+	z
+	zsh-autosuggestions
 )
-zstyle ':omz:plugins:nvm' autoload yes
 export NVM_DIR="$HOME/.nvm"
+zstyle ':omz:plugins:nvm' autoload yes
 
 source $ZSH/oh-my-zsh.sh
+
+
 
 # User configuration
 
