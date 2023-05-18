@@ -35,7 +35,6 @@ zstyle ':omz:update' frequency 7
 # stamp shown in the history command output.
 # You can set one of the optional three formats:
 # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
 HIST_STAMPS="dd.mm.yyyy"
 
@@ -53,12 +52,12 @@ HIST_STAMPS="dd.mm.yyyy"
 #   git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git \
 #     ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
 plugins=(
-	fast-syntax-highlighting
-	git
-	nvm
-	sudo
-	z
-	zsh-autosuggestions
+  fast-syntax-highlighting
+  git
+  nvm
+  sudo
+  z
+  zsh-autosuggestions
 )
 export NVM_DIR="$HOME/.nvm"
 zstyle ':omz:plugins:nvm' autoload yes
@@ -71,6 +70,8 @@ source $ZSH/oh-my-zsh.sh
 
 export EDITOR="/usr/bin/nvim"
 export SAVEHIST=1000000
+export HISTSIZE=1000000
+export HISTFILE="$HOME/.zsh_history"
 
 export PATH="$HOME/.config/emacs/bin:$PATH"
 export PATH="$HOME/rbenv/bin:$PATH"
@@ -102,6 +103,9 @@ alias lal="lsd -lAh"
 alias dots="vcsh dotfiles"
 
 eval "$(starship init zsh)"
+eval "$(~/.rbenv/bin/rbenv init - zsh)"
+source "$HOME/.cargo/env"
+
 
 random_cute_emoticon() {
   # List of cute emoticons
