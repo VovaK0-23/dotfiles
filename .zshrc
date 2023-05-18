@@ -96,3 +96,25 @@ alias la="lsd -A"
 alias ll="lsd -lh"
 alias lal="lsd -lAh"
 alias dots="vcsh dotfiles"
+
+eval "$(starship init zsh)"
+
+random_cute_emoticon() {
+  # List of cute emoticons
+  local emoticons=(
+      "(ᵔᴥᵔ)" "(*^ω^*)" "ʕ•ᴥ•ʔ" "(•‿•)" "(^▽^)" "(｡♥‿♥｡)" "(＾◡＾)" "(✿◠‿◠)"
+      "(◕‿◕)" "(⺣◡⺣)♡" "ヽ(＾Д＾)ﾉ" "(=^･^=)" "(｡^‿^｡)" "(◕ω◕✿)" "(*•̀ᴗ•́*)و"
+      "╰(◡‿◡✿╰)" "ヾ(｡^ω^｡)ノ" "(✯◡✯)" "（っ＾▿＾）" "o(〃＾▽＾〃)o" "(*≧▽≦)" "(✪‿✪)"
+      "(◠‿◠✿)" "(=^-ω-^=)" "ᶘᵒᴥᵒᶅ" "(＾ｕ＾)" "(*⌒▽⌒*)" "(★^O^★)" "ヽ(^◇^*)/"
+  )
+
+  # Shuffle the array
+  local shuffled_emoticons=($(shuf -e "${emoticons[@]}"))
+
+  clear
+  # Print the first five elements (random cute emoticons)
+  printf '%s ' "${shuffled_emoticons[@]:0:9}" | lolcat
+  printf "\n"
+}
+
+random_cute_emoticon
