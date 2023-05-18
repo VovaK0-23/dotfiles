@@ -71,6 +71,10 @@ source $ZSH/oh-my-zsh.sh
 
 export EDITOR="/usr/bin/nvim"
 export SAVEHIST=1000000
+
+export PATH="$HOME/.config/emacs/bin:$PATH"
+export PATH="$HOME/rbenv/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # Preferred editor for local and remote sessions
