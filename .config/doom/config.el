@@ -71,24 +71,8 @@
 (add-hook 'typescript-tsx-mode-hook 'prettier-js-mode)
 (add-hook 'css-mode-hook 'prettier-js-mode)
 
-<<<<<<< HEAD
 (add-hook 'ruby-mode-hook (lambda ()
                             (add-hook 'before-save-hook  'lsp-format-buffer)))
-
-=======
-(add-hook 'ruby-mode-hook 
-          (lambda () 
-            (add-hook 'before-save-hook  'lsp-format-buffer)))
-
-(use-package reverse-im 
-  :custom (reverse-im-input-methods '("russian-computer")) 
-  :config (reverse-im-mode t) )
-
-(add-to-list 'default-frame-alist '(alpha . 
-                                    (96 
-                                     .
-                                     90)))
->>>>>>> 9b8998f (Doom emacs config formatting)
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
@@ -122,7 +106,6 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-<<<<<<< HEAD
 (use-package reverse-im
   :custom (reverse-im-input-methods '("russian-computer"))
   :config (reverse-im-mode t) )
@@ -140,35 +123,20 @@
     (evil-global-set-key 'normal (kbd (car tuple))
                          (lambda ()
                            (interactive)
-=======
-(defun format-buffer-my () 
-  (interactive) 
-  (pcase (car(last(split-string buffer-file-name "\\."))) 
-    ("scss" (shell-command (format "sass-lint-auto-fix %s" (shell-quote-argument
-                                                            buffer-file-name))))))
-(defun no-easy-keys () 
-  (dolist (tuple '(("<left>" . "h" ) 
-                   ("<down>" . "j") 
-                   ("<up>" . "k") 
-                   ("<right>" . "l"))) 
-    (evil-global-set-key 'normal (kbd (car tuple)) 
-                         (lambda () 
-                           (interactive) 
->>>>>>> 9b8998f (Doom emacs config formatting)
                            (message (format "No! Use %s instead!" (cdr tuple)))))))
 
 (no-easy-keys)
 
-(evil-global-set-key 'normal (kbd "C-u") 
-                     (lambda () 
-                       (interactive) 
-                       (evil-scroll-up evil-this-motion-count) 
+(evil-global-set-key 'normal (kbd "C-u")
+                     (lambda ()
+                       (interactive)
+                       (evil-scroll-up evil-this-motion-count)
                        (evil-scroll-line-to-center evil-this-motion-count)))
 
-(evil-global-set-key 'normal (kbd "C-d") 
-                     (lambda () 
-                       (interactive) 
-                       (evil-scroll-down evil-this-motion-count) 
+(evil-global-set-key 'normal (kbd "C-d")
+                     (lambda ()
+                       (interactive)
+                       (evil-scroll-down evil-this-motion-count)
                        (evil-scroll-line-to-center evil-this-motion-count)))
 
 (message "(,-,)")
