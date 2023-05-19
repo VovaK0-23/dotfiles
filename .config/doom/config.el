@@ -21,11 +21,12 @@
 ;; accept. For example:
 ;;
 
-(setq doom-font (font-spec :family "SauceCodePro Nerd Font Mono" :size 18)
-      doom-variable-pitch-font (font-spec :family "SauceCodePro Nerd Font Mono" :size 14))
+(setq doom-font (font-spec :family "SauceCodePro Nerd Font Mono" 
+                           :size 18))
+(setq  doom-variable-pitch-font (font-spec :family "SauceCodePro Nerd Font Mono" 
+                                           :size 14))
 
-
-(custom-set-faces! '(font-lock-comment-face :slant italic)
+(custom-set-faces! '(font-lock-comment-face :slant italic) 
   '(font-lock-keyword-face :weight bold))
 
 ;;(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
@@ -60,17 +61,18 @@
 
 (add-hook 'typescript-mode-hook 'prettier-js-mode)
 (add-hook 'typescript-tsx-mode-hook 'prettier-js-mode)
+(add-hook 'css-mode-hook 'prettier-js-mode)
 
-(add-hook 'ruby-mode-hook
-          (lambda ()
+(add-hook 'ruby-mode-hook 
+          (lambda () 
             (add-hook 'before-save-hook  'lsp-format-buffer)))
 
-(use-package reverse-im
-  :custom (reverse-im-input-methods '("russian-computer"))
+(use-package reverse-im 
+  :custom (reverse-im-input-methods '("russian-computer")) 
   :config (reverse-im-mode t) )
 
-(add-to-list 'default-frame-alist '(alpha .
-                                    (96
+(add-to-list 'default-frame-alist '(alpha . 
+                                    (96 
                                      .
                                      90)))
 
@@ -106,33 +108,33 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-(defun format-buffer-my ()
-  (interactive)
-  (pcase (car(last(split-string buffer-file-name "\\.")))
+(defun format-buffer-my () 
+  (interactive) 
+  (pcase (car(last(split-string buffer-file-name "\\."))) 
     ("scss" (shell-command (format "sass-lint-auto-fix %s" (shell-quote-argument
                                                             buffer-file-name))))))
-(defun no-easy-keys ()
-  (dolist (tuple '(("<left>" . "h" )
-                   ("<down>" . "j")
-                   ("<up>" . "k")
-                   ("<right>" . "l")))
-    (evil-global-set-key 'normal (kbd (car tuple))
-                         (lambda ()
-                           (interactive)
+(defun no-easy-keys () 
+  (dolist (tuple '(("<left>" . "h" ) 
+                   ("<down>" . "j") 
+                   ("<up>" . "k") 
+                   ("<right>" . "l"))) 
+    (evil-global-set-key 'normal (kbd (car tuple)) 
+                         (lambda () 
+                           (interactive) 
                            (message (format "No! Use %s instead!" (cdr tuple)))))))
 
 (no-easy-keys)
 
-(evil-global-set-key 'normal (kbd "C-u")
-                     (lambda ()
-                       (interactive)
-                       (evil-scroll-up evil-this-motion-count)
+(evil-global-set-key 'normal (kbd "C-u") 
+                     (lambda () 
+                       (interactive) 
+                       (evil-scroll-up evil-this-motion-count) 
                        (evil-scroll-line-to-center evil-this-motion-count)))
 
-(evil-global-set-key 'normal (kbd "C-d")
-                     (lambda ()
-                       (interactive)
-                       (evil-scroll-down evil-this-motion-count)
+(evil-global-set-key 'normal (kbd "C-d") 
+                     (lambda () 
+                       (interactive) 
+                       (evil-scroll-down evil-this-motion-count) 
                        (evil-scroll-line-to-center evil-this-motion-count)))
 
 (message "(,-,)")
