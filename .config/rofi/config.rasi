@@ -1,5 +1,5 @@
 configuration {
-/*	modi: "window,run,ssh";*/
+	modi: "window,run,ssh,combi";
 /*	width: 50;*/
 /*	lines: 15;*/
 /*	columns: 1;*/
@@ -50,7 +50,7 @@ configuration {
 /*	scrollbar-width: 8;*/
 /*	scroll-method: 0;*/
 /*	fake-background: "screenshot";*/
-/*	window-format: "{w}    {c}   {t}";*/
+	window-format: "w {w}\t{c}\t{t}";
 /*	click-to-exit: true;*/
 /*	show-match: true;*/
 /*	theme: ;*/
@@ -59,7 +59,7 @@ configuration {
 /*	color-active: ;*/
 /*	color-window: ;*/
 /*	max-history-size: 25;*/
-/*	combi-hide-mode-prefix: false;*/
+	combi-hide-mode-prefix: true;
 /*	matching-negate-char: '-' /* unsupported */;*/
 /*	cache-dir: ;*/
 /*	pid: "/run/user/1000/rofi.pid";*/
