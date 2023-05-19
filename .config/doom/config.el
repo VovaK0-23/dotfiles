@@ -21,8 +21,8 @@
 ;; accept. For example:
 ;;
 
-(setq doom-font (font-spec :family "SauceCodePro Nerd Font Mono" :size 18)
-      doom-variable-pitch-font (font-spec :family "SauceCodePro Nerd Font Mono" :size 14))
+(setq doom-font (font-spec :family "SauceCodePro Nerd Font Mono" :size 36)
+      doom-variable-pitch-font (font-spec :family "SauceCodePro Nerd Font Mono" :size 24))
 
 
 (custom-set-faces! '(font-lock-comment-face :slant italic)
