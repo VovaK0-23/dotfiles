@@ -1,0 +1,19 @@
+# Tomorrow Night
+
+[global]
+frame_color = "#81a2be"
+separator_color = frame
+
+[urgency_low]
+background = "#1d1f21"
+foreground = "#c5c8c6"
+
+[urgency_normal]
+background = "#1d1f21"
+foreground = "#c5c8c6"
+frame_color = "#e6c547"
+
+[urgency_critical]
+background = "#1d1f21"
+foreground = "#c5c8c6"
+frame_color = "#cc6666"
