@@ -154,14 +154,18 @@ layouts = [
         border_normal=colors["bright"]["black"],
         single_border_width= 0, ratio=0.75
     ),
+    layout.MonadWide(
+        margin=5, border_width=4,
+        border_focus=colors["normal"]["red"],
+        border_normal=colors["bright"]["black"],
+        single_border_width= 0, ratio=0.75
+    ),
     layout.Max(),
     layout.TreeTab(),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
-    # layout.MonadTall(),
-    # layout.MonadWide(),
     # layout.RatioTile(),
     # layout.Tile(),
     # layout.TreeTab(),
@@ -185,11 +189,12 @@ def init_widgets(right=True):
         widget.GroupBox(
             fontsize=16,
             disable_drag=True,
-            rounded=False,
             highlight_method="text",
+            urgent_alert_method="text",
             this_current_screen_border=colors["normal"]["red"],
-            active=colors["bright"]["black"],
-            inactive=colors["bright"]["white"],
+            active=colors["normal"]["blue"],
+            inactive=colors["bright"]["black"],
+            urgent_text=colors["normal"]["yellow"]
         ),
         widget.Sep(linewidth=1, padding=15),
         widget.CurrentLayout(font="Noto Sans Bold"),
@@ -203,24 +208,25 @@ def init_widgets(right=True):
             text="  ",
             padding=0,
             fontsize=16,
+            foreground=colors["normal"]["blue"]
         ),
         widget.Clock(
             font="Noto Sans",
-            fontsize=12,
             format="%Y-%m-%d %H:%M",
         ),
         widget.Sep(linewidth=1, padding=15),
         widget.TextBox(
-                 name="layout",
-                 font="Noto Sans Bold",
-                 text="",
-                 fontsize=16
-                 ),
+            name="layout",
+            font="Noto Sans Bold",
+            text="us",
+            fontsize=14,
+            foreground=colors["normal"]["red"]
+        ),
         # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
         # widget.StatusNotifier(),
         widget.Systray(),
         widget.Sep(linewidth=1, padding=15),
-        widget.QuickExit(default_text='⏻', countdown_format='{}', padding=5),
+        widget.QuickExit(default_text='⏻', countdown_format='{}', padding=5, foreground=colors["normal"]["red"]),
         widget.Sep(linewidth=0, padding=10),
     ]
     if right:
