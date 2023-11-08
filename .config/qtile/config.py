@@ -123,6 +123,7 @@ for i in groups:
         ]
     )
 
+# Colors are from Tomorrow Night or Materia Red colorsheme (aur pkg materia-custom-accent-git)
 colors: Dict[str, Dict[str, str]] = {
     # Normal colors
     "normal": {
@@ -205,7 +206,7 @@ def init_widgets(right=True):
     all_widgets = base_widgets + [
         widget.Sep(linewidth=1, padding=15),
         widget.TextBox(
-            text="  ",
+            text=" ",
             padding=0,
             fontsize=16,
             foreground=colors["normal"]["blue"]
@@ -216,11 +217,19 @@ def init_widgets(right=True):
         ),
         widget.Sep(linewidth=1, padding=15),
         widget.TextBox(
+            text="󰕾 ",
+            padding=0,
+            fontsize=16,
+            foreground=colors["normal"]["blue"]
+        ),
+        widget.PulseVolume(limit_max_volume=True, font="Noto Sans", width=35),
+        widget.Sep(linewidth=1, padding=15),
+        widget.TextBox(
             name="layout",
             font="Noto Sans Bold",
-            text="us",
             fontsize=14,
-            foreground=colors["normal"]["red"]
+            foreground=colors["normal"]["red"],
+            text="us"
         ),
         # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
         # widget.StatusNotifier(),
@@ -257,7 +266,7 @@ def startup_once():
 def startup_complete():
     subprocess.call([scripts_path + "xrandr_setup.sh", "-h"])
     subprocess.Popen(["nohup", scripts_path + "keyboard_layout.sh"])
-    subprocess.Popen(["discord-canary"])
+    subprocess.Popen(["discord"])
     subprocess.Popen(["telegram-desktop"])
     subprocess.Popen(["chromium"])
 
