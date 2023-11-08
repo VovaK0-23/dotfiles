@@ -10,4 +10,4 @@ emacs --daemon &
 dunst &
 light-locker &
 xfce4-clipman &
-# sudo timeshift --check
+sudo timeshift --check
