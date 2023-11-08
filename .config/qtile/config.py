@@ -24,10 +24,11 @@
 import os
 import subprocess
 
+from typing import Dict, Union
 from libqtile import bar, layout, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
-from libqtile.utils import guess_terminal
+from libqtile.utils import guess_terminal, send_notification
 
 mod = "mod4"
 terminal = guess_terminal()
@@ -122,11 +123,11 @@ for i in groups:
         ]
     )
 
-colors = {
-    "bg": '#1d1f21',
-    "fg": '#c5c8c6',
+colors: Dict[str, Dict[str, str]] = {
     # Normal colors
     "normal": {
+        "bg": '#1d1f21',
+        "fg": '#c5c8c6',
         "red":     '#cc6666',
         "green":   '#b5bd68',
         "yellow":  '#e6c547',
@@ -137,7 +138,7 @@ colors = {
     },
     # Bright colors
     "bright": {
-        "black":   '#666666',
+        "black":   '#666666', # bright black is grey
         "red":     '#ff3334',
         "green":   '#9ec400',
         "yellow":  '#f0c674',
@@ -177,12 +178,11 @@ widget_defaults = dict(
     font="Source Code Pro",
     fontsize=12,
     padding=2,
-    foreground=colors["fg"],
-    background=colors["bg"]
+    foreground=colors["normal"]["fg"],
+    background=colors["normal"]["bg"]
 )
 
 extension_defaults = widget_defaults.copy()
-
 
 def init_widgets(right=True):
     base_widgets = [
@@ -235,9 +235,7 @@ def init_widgets(right=True):
         return base_widgets
 
 screens = [
-    Screen(top=bar.Bar(
-        widgets=init_widgets(),
-        size=26, opacity=0.8,
+    Screen(top=bar.Bar(widgets=init_widgets(), size=26, opacity=0.8,
         # margin=[top,right,bottom,left]
         margin=[3,8,3,5]
     )),
@@ -252,18 +250,32 @@ mouse = [
 ]
 
 @hook.subscribe.startup_once
-def start_once():
+def startup_once():
     subprocess.call([scripts_path + "autostart.sh"])
 
 @hook.subscribe.startup_complete
-def run_every_startup():
+def startup_complete():
     subprocess.call([scripts_path + "xrandr_setup.sh", "-h"])
     subprocess.Popen(["nohup", scripts_path + "keyboard_layout.sh"])
+    subprocess.Popen(["discord-canary"])
+    subprocess.Popen(["telegram-desktop"])
+    subprocess.Popen(["chromium"])
 
 # @hook.subscribe.startup
 # def start_always():
 #     Set the cursor to something sane in X
 #     subprocess.Popen(["xsetroot", "-cursor_name", "left_ptr"])
+
+@hook.subscribe.client_new
+def client_new(client):
+    info = client.info()
+    # send_notification("qtile", f"{info}")
+    if 'chromium' in info['wm_class']:
+        client.togroup("1")
+    elif 'discord' in info['wm_class']:
+        client.togroup("9")
+    elif 'telegram-desktop' in info['wm_class']:
+        client.togroup("0")
 
 dgroups_key_binder = None
 dgroups_app_rules = []  # type: list
@@ -276,12 +288,12 @@ floating_layout = layout.Floating(
     float_rules=[
         # Run the utility of `xprop` to see the wm class and name of an X client.
         *layout.Floating.default_float_rules,
+        Match(title="branchdialog"),  # gitk
+        Match(title="pinentry"),  # GPG key password entry
         Match(wm_class="confirmreset"),  # gitk
         Match(wm_class="makebranch"),  # gitk
         Match(wm_class="maketag"),  # gitk
         Match(wm_class="ssh-askpass"),  # ssh-askpass
-        Match(title="branchdialog"),  # gitk
-        Match(title="pinentry"),  # GPG key password entry
         Match(wm_class="confirm"),
         Match(wm_class="dialog"),
         Match(wm_class="download"),
@@ -292,6 +304,7 @@ floating_layout = layout.Floating(
         Match(wm_class="toolbar"),
         Match(wm_class="Arandr"),
         Match(wm_class="feh"),
+        Match(wm_class="shutter"),
     ],
     border_width=0,
 )
