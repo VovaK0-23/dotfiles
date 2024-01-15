@@ -127,16 +127,16 @@
 
 (no-easy-keys)
 
-(evil-global-set-key 'normal (kbd "C-u")
-                     (lambda ()
-                       (interactive)
-                       (evil-scroll-up evil-this-motion-count)
+(evil-global-set-key 'normal (kbd "C-u") 
+                     (lambda () 
+                       (interactive) 
+                       (evil-scroll-up evil-this-motion-count) 
                        (evil-scroll-line-to-center evil-this-motion-count)))
 
-(evil-global-set-key 'normal (kbd "C-d")
-                     (lambda ()
-                       (interactive)
-                       (evil-scroll-down evil-this-motion-count)
+(evil-global-set-key 'normal (kbd "C-d") 
+                     (lambda () 
+                       (interactive) 
+                       (evil-scroll-down evil-this-motion-count) 
                        (evil-scroll-line-to-center evil-this-motion-count)))
 
 (message "(,-,)")

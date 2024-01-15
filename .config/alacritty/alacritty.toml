@@ -30,8 +30,8 @@ background = "0x1d1f21"
 foreground = "0xc5c8c6"
 
 [font.normal]
-family = "SauceCodeProNerdFontMono"
+family = "Sauce Code Pro Nerd Font Mono"
 style = "Regular"
 
 [window]
-opacity = 0.95
+opacity = 0.96

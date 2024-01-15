@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: const props
+# key: cprops
+# --
+
+
+const {$1} = props;

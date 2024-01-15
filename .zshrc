@@ -1,7 +1,32 @@
-# Oh my config
+# Vars
 
+export QT_QPA_PLATFORMTHEME=qt5ct
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+
+export EDITOR="/usr/bin/nvim"
+export SAVEHIST=1000000
+export HISTSIZE=1000000
+export HISTFILE="$HOME/.zsh_history"
+
+export PATH="$HOME/.config/emacs/bin:$PATH"
+export PATH="$HOME/rbenv/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# Oh my config
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -52,42 +77,22 @@ HIST_STAMPS="dd.mm.yyyy"
 #   git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git \
 #     ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
 plugins=(
-  fast-syntax-highlighting
-  git
   nvm
   asdf
+  fast-syntax-highlighting
+  git
   sudo
   z
   zsh-autosuggestions
 )
-export NVM_DIR="$HOME/.nvm"
+
 zstyle ':omz:plugins:nvm' autoload yes
 
 source $ZSH/oh-my-zsh.sh
 
-
+# zmodload zsh/zprof
 
 # User configuration
-
-export EDITOR="/usr/bin/nvim"
-export SAVEHIST=1000000
-export HISTSIZE=1000000
-export HISTFILE="$HOME/.zsh_history"
-
-export PATH="$HOME/.config/emacs/bin:$PATH"
-export PATH="$HOME/rbenv/bin:$PATH"
-export PATH="$HOME/.cargo/bin:$PATH"
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -108,24 +113,3 @@ alias dots="vcsh dotfiles"
 eval "$(starship init zsh)"
 eval "$(~/.rbenv/bin/rbenv init - zsh)"
 source "$HOME/.cargo/env"
-
-
-random_cute_emoticon() {
-  # List of cute emoticons
-  local emoticons=(
-      "(ᵔᴥᵔ)" "(*^ω^*)" "ʕ•ᴥ•ʔ" "(•‿•)" "(^▽^)" "(｡♥‿♥｡)" "(＾◡＾)" "(✿◠‿◠)"
-      "(◕‿◕)" "(⺣◡⺣)♡" "ヽ(＾Д＾)ﾉ" "(=^･^=)" "(｡^‿^｡)" "(◕ω◕✿)" "(*•̀ᴗ•́*)و"
-      "╰(◡‿◡✿╰)" "ヾ(｡^ω^｡)ノ" "(✯◡✯)" "（っ＾▿＾）" "o(〃＾▽＾〃)o" "(*≧▽≦)" "(✪‿✪)"
-      "(◠‿◠✿)" "(=^-ω-^=)" "ᶘᵒᴥᵒᶅ" "(＾ｕ＾)" "(*⌒▽⌒*)" "(★^O^★)" "ヽ(^◇^*)/"
-  )
-
-  # Shuffle the array
-  local shuffled_emoticons=($(shuf -e "${emoticons[@]}"))
-
-  clear
-  # Print the first five elements (random cute emoticons)
-  printf '%s ' "${shuffled_emoticons[@]:0:9}" | lolcat
-  printf "\n"
-}
-
-random_cute_emoticon

@@ -1,0 +1,16 @@
+
+[global]
+gap_size = 5
+progress_bar = true
+indicate_hidden = yes
+notification_limit = 10
+font = "Noto Sans"
+
+# Tomorrow Night
+background = "#1d1f21"
+foreground = "#c5c8c6"
+frame_color = "#cc6666"
+separator_color = frame
+
+[urgency_critical]
+frame_color = "#e6c547"

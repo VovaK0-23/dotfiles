@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: React Component
+# key: rc
+# --
+
+import React from 'react';
+
+export const ${1:`(f-base buffer-file-name)`} = (props: $2) => {
+  const {} = props;
+  return null;
+}
