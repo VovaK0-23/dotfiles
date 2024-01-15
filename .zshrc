@@ -55,6 +55,7 @@ plugins=(
   fast-syntax-highlighting
   git
   nvm
+  asdf
   sudo
   z
   zsh-autosuggestions
