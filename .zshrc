@@ -13,7 +13,12 @@ export PATH="$HOME/.config/emacs/bin:$PATH"
 export PATH="$HOME/rbenv/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 
+export ANDROID_HOME="$HOME/Android/Sdk"
+export PATH="$ANDROID_HOME/emulator:$PATH"
+export PATH="$ANDROID_HOME/platform-tools:$PATH"
+
 export NVM_DIR="$HOME/.nvm"
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # Preferred editor for local and remote sessions

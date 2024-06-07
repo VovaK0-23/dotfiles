@@ -79,8 +79,8 @@ keys = [
     Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -q set Master 5%-")),
     Key([], "XF86AudioMute", lazy.spawn("amixer -q set Master toggle")),
 
-    Key([mod], "Print", lazy.spawn("shutter -c")),
-    Key([], "Print", lazy.spawn("shutter -c -s")),
+    Key([mod], "Print", lazy.spawn("xfce4-screenshooter")),
+    Key([], "Print", lazy.spawn("xfce4-screenshooter -r")),
 ]
 
 
@@ -91,8 +91,8 @@ group_labels = [
     "",
     "",
     "",
-    "",
-    "",
+    "󰎄",
+    "󰭹",
     "󰙯",
     "",
 ]
@@ -201,9 +201,6 @@ def init_widgets(right=True):
         widget.CurrentLayout(font="Noto Sans Bold"),
         widget.Sep(linewidth=1, padding=15),
         widget.WindowName(font="Noto Sans"),
-    ]
-
-    all_widgets = base_widgets + [
         widget.Sep(linewidth=1, padding=15),
         widget.TextBox(
             text=" ",
@@ -216,13 +213,16 @@ def init_widgets(right=True):
             format="%Y-%m-%d %H:%M",
         ),
         widget.Sep(linewidth=1, padding=15),
+    ]
+
+    all_widgets = base_widgets + [
         widget.TextBox(
             text="󰕾 ",
             padding=0,
             fontsize=16,
             foreground=colors["normal"]["blue"]
         ),
-        widget.PulseVolume(limit_max_volume=True, font="Noto Sans", width=35),
+        widget.Volume(limit_max_volume=True, font="Noto Sans", width=35),
         widget.Sep(linewidth=1, padding=15),
         widget.TextBox(
             name="layout",
@@ -314,6 +314,7 @@ floating_layout = layout.Floating(
         Match(wm_class="Arandr"),
         Match(wm_class="feh"),
         Match(wm_class="shutter"),
+        Match(wm_type="_KDE_NET_WM_WINDOW_TYPE_OVERRIDE")
     ],
     border_width=0,
 )
